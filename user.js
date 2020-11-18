@@ -11,6 +11,10 @@ class User {
   get score() {
     return this.#score;
   }
+
+  addPoint() {
+    this.#score = 15;
+  }
 }
 
 module.exports = User; 
