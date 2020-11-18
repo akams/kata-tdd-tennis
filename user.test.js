@@ -26,4 +26,11 @@ describe('User', () => {
     p1.addPoint();
     expect(p1.score).toBe(40);
   });
+  it('should add point to user 4 time, the score must be equal to {0}', () => {
+    p1.addPoint();
+    p1.addPoint();
+    p1.addPoint();
+    p1.addPoint();
+    expect(p1.score).toBe(0);
+  });
 });
