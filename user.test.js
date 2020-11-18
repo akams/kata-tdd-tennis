@@ -33,4 +33,11 @@ describe('User', () => {
     p1.addPoint();
     expect(p1.score).toBe(0);
   });
+  it('should notice to user is winner count must be equal to {1}', () => {
+    p1.addPoint();
+    p1.addPoint();
+    p1.addPoint();
+    p1.addPoint();
+    expect(p1.winnerCount).toBe(1);
+  });
 });
