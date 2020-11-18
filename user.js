@@ -13,7 +13,7 @@ class User {
   }
 
   addPoint() {
-    this.#score = 15;
+    this.#score += 15;
   }
 }
 
