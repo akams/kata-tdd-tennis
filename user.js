@@ -17,6 +17,13 @@ class User {
     return this.#winnerCount;
   }
 
+  setName(name) {
+    this.#name = name;
+  }
+  setScore(score) {
+    this.#score = score;
+  }
+
   addPoint() {
     if (this.#score === 30) {
       this.#score += 10;

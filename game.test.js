@@ -1,14 +1,9 @@
 const Game = require('./game'); 
-const User = require('./user'); 
 
 describe('Game', () => {
   let g1;
-  let p1;
-  let p2;
   beforeEach(() => {
-    p1 = new User();
-    p2 = new User();
-    g1 = new Game();
+    g1 = new Game('Player 1', 'Player 2');
   });
   afterEach(() => {
     g1 = undefined;
@@ -16,6 +11,6 @@ describe('Game', () => {
     p2 = undefined;
   });
   it('should start Game', () => {
-    expect(g1).toBe(typeof g1);
+    expect(typeof g1).toBe('object');
   });
 });
