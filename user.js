@@ -15,6 +15,8 @@ class User {
   addPoint() {
     if (this.#score === 30) {
       this.#score += 10;
+    } else if (this.#score === 40) {
+      this.#score = 0;
     } else {
       this.#score += 15;
     }
