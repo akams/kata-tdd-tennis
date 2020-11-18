@@ -13,7 +13,11 @@ class User {
   }
 
   addPoint() {
-    this.#score += 15;
+    if (this.#score === 30) {
+      this.#score += 10;
+    } else {
+      this.#score += 15;
+    }
   }
 }
 
