@@ -25,6 +25,14 @@ class Game {
       } else if (u1 < u2) {
         this.handlePlayerTwo();
       }
+      Game.setDeuceScore(this.#p1, this.#p2);
+
+      if(Game.isStartedDeuceRule(this.#p1, this.#p2)) {
+        Game.startDeuceRule(this.#p1, this.#p2);
+      }
+
+      this.showScore();
+
       const s = this.displaySentenceWinner();
       if (s) {
         console.log(s);
@@ -43,7 +51,6 @@ class Game {
 
   actionPlayerOne(){
     this.#p1.addPoint();
-    this.showScore();
   }
 
   handlePlayerTwo() {
@@ -57,7 +64,6 @@ class Game {
 
   actionPlayerTwo(){
     this.#p2.addPoint();
-    this.showScore();
   }
 
   showScore() {
@@ -103,29 +109,31 @@ class Game {
     }
   }
 
-  static startDeuceRule(playerOne, playerTwo) {
+  static isStartedDeuceRule(playerOne, playerTwo) {
     let flag = false;
     if (playerOne.score === 40 && playerTwo.score === 40) {
-      playerOne.setDeuceRule(true);
-      playerTwo.setDeuceRule(true);
       flag = true;
     }
     return flag;
   }
 
+  static startDeuceRule(playerOne, playerTwo) {
+    if (playerOne.score === 40 && playerTwo.score === 40) {
+      playerOne.setDeuceRule(true);
+      playerTwo.setDeuceRule(true);
+    }
+  }
+
   static setDeuceScore(playerOne, playerTwo) {
-    if (playerOne.score === 'ADV' && playerOne.deuceRule === true &&
-        playerTwo.score === 'ADV' && playerTwo.deuceRule === true) {
+    if (playerOne.score === 'ADV' && playerTwo.score === 'ADV') {
         playerOne.setScore('DEUCE');
         playerTwo.setScore('DEUCE');
-    } else if (playerOne.score === 'DEUCE' && playerOne.deuceRule === true &&
-        playerTwo.score === 'ADV' && playerTwo.deuceRule === true) {
-        playerOne.setScore('DEUCE');
-        playerTwo.setScore(40);
-    } else if (playerOne.score === 'ADV' && playerOne.deuceRule === true &&
-        playerTwo.score === 'DEUCE' && playerTwo.deuceRule === true) {
+    } else if ((playerOne.score === 'DEUCE' || playerOne.score === 40) && playerTwo.score === 'ADV') {
         playerOne.setScore(40);
-        playerTwo.setScore('DEUCE');
+        playerTwo.setScore('ADV');
+    } else if (playerOne.score === 'ADV' && (playerTwo.score === 'DEUCE' || playerTwo.score === 40)) {
+        playerOne.setScore('ADV');
+        playerTwo.setScore(40);
     }
   }
 }
