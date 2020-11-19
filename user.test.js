@@ -62,4 +62,15 @@ describe('User sprint 2', () => {
     p2.addPoint();
     expect(p1.isDeuceRuleActivated(p2)).toBe(true);
   });
+  it('should activate ADVANTAGE rule if one of players take a pts', () => {
+    p1.addPoint();
+    p1.addPoint();
+    p1.addPoint();
+    p2.addPoint();
+    p2.addPoint();
+    p2.addPoint();
+    p1.isDeuceRuleActivated(p2);
+    p1.addPoint();
+    expect(p1.isOnAdvantage).toBe(true);
+  });
 });
