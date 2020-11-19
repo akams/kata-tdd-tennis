@@ -2,6 +2,7 @@ class User {
   #name = 0;
   #score;
   #winnerCount = 0;
+  #isWinner = false;
   constructor(name, score) {
     this.#name = name;
     this.#score = score;
@@ -17,6 +18,10 @@ class User {
     return this.#winnerCount;
   }
 
+  get isWinner() {
+    return this.#isWinner;
+  }
+
   setName(name) {
     this.#name = name;
   }
@@ -30,6 +35,7 @@ class User {
     } else if (this.#score === 40) {
       this.#score = 0;
       this.#winnerCount += 1;
+      this.#isWinner = true;
     } else {
       this.#score += 15;
     }
