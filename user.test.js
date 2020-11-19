@@ -1,6 +1,6 @@
 const User = require('./user'); 
 
-describe('User', () => {
+describe('User sprint 1', () => {
   let p1;
   beforeEach(() => {
     p1 = new User('Player one', 0);
@@ -39,5 +39,29 @@ describe('User', () => {
     p1.addPoint();
     p1.addPoint();
     expect(p1.winnerCount).toBe(1);
+  });
+});
+
+describe('User sprint 2', () => {
+  let p1;
+  let p2;
+  beforeEach(() => {
+    p1 = new User('Player 1', 0);
+    p2 = new User('Player 2', 0);
+  });
+  afterEach(() => {
+    p1 = undefined;
+    p2 = undefined;
+  });
+  it('should activate DEUCE rule if two players reaches score equal {40}', () => {
+    p1.addPoint();
+    p1.addPoint();
+    p1.addPoint();
+    p1.addPoint();
+    p2.addPoint();
+    p2.addPoint();
+    p2.addPoint();
+    p2.addPoint();
+    expect(p1.deuceRule).toBe(true) && expect(p2.deuceRule).toBe(true);
   });
 });
