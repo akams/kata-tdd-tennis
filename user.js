@@ -45,31 +45,15 @@ class User {
       this.#score = 0;
       this.#winnerCount += 1;
       this.#isWinner = true;
-    } else if (this.#score === 40 && this.#deuceRule === true) {
+    } else if ((this.#score === 40 || this.#score === 'DEUCE') && this.#deuceRule === true) {
       this.#score = 'ADV';
+    } else if (this.#score === 'ADV' && this.#deuceRule === true) {
+      this.#score = 0;
+      this.#winnerCount += 1;
+      this.#isWinner = true;
     } else {
       this.#score += 15;
     }
-  }
-
-  isDeuceRuleActivated(otherPlayer) {
-    let flag = false;
-    if (this.#score === 40 && otherPlayer.score === 40) {
-      this.#deuceRule = true;
-      otherPlayer.setDeuceRule(true);
-      flag = true;
-    }
-    return flag;
-  }
-
-  takeAdvantage() {
-    let flag = false;
-    if (this.#score === 40 && otherPlayer.score === 40) {
-      this.#deuceRule = true;
-      otherPlayer.setDeuceRule(false);
-      flag = true;
-    }
-    return flag;
   }
 }
 

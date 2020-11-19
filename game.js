@@ -112,6 +112,22 @@ class Game {
     }
     return flag;
   }
+
+  static setDeuceScore(playerOne, playerTwo) {
+    if (playerOne.score === 'ADV' && playerOne.deuceRule === true &&
+        playerTwo.score === 'ADV' && playerTwo.deuceRule === true) {
+        playerOne.setScore('DEUCE');
+        playerTwo.setScore('DEUCE');
+    } else if (playerOne.score === 'DEUCE' && playerOne.deuceRule === true &&
+        playerTwo.score === 'ADV' && playerTwo.deuceRule === true) {
+        playerOne.setScore('DEUCE');
+        playerTwo.setScore(40);
+    } else if (playerOne.score === 'ADV' && playerOne.deuceRule === true &&
+        playerTwo.score === 'DEUCE' && playerTwo.deuceRule === true) {
+        playerOne.setScore(40);
+        playerTwo.setScore('DEUCE');
+    }
+  }
 }
 
 module.exports = Game; 
