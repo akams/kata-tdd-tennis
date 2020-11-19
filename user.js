@@ -3,6 +3,7 @@ class User {
   #score;
   #winnerCount = 0;
   #isWinner = false;
+  #deuceRule = false;
   constructor(name, score) {
     this.#name = name;
     this.#score = score;
@@ -17,7 +18,6 @@ class User {
   get winnerCount() {
     return this.#winnerCount;
   }
-
   get isWinner() {
     return this.#isWinner;
   }
@@ -27,6 +27,9 @@ class User {
   }
   setScore(score) {
     this.#score = score;
+  }
+  setDeuceRule(value) {
+    this.#deuceRule = value;
   }
 
   addPoint() {
@@ -39,6 +42,16 @@ class User {
     } else {
       this.#score += 15;
     }
+  }
+
+  isDeuceRuleActivated(otherPlayer) {
+    let flag = false;
+    if (this.#score === 40 && otherPlayer.score === 40) {
+      this.#deuceRule = true;
+      otherPlayer.setDeuceRule(true);
+      flag = true;
+    }
+    return flag;
   }
 }
 

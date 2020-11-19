@@ -57,11 +57,9 @@ describe('User sprint 2', () => {
     p1.addPoint();
     p1.addPoint();
     p1.addPoint();
-    p1.addPoint();
     p2.addPoint();
     p2.addPoint();
     p2.addPoint();
-    p2.addPoint();
-    expect(p1.deuceRule).toBe(true) && expect(p2.deuceRule).toBe(true);
+    expect(p1.isDeuceRuleActivated(p2)).toBe(true);
   });
 });
