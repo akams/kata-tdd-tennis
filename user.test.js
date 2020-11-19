@@ -1,4 +1,5 @@
 const User = require('./user'); 
+const Game = require('./game'); 
 
 describe('User sprint 1', () => {
   let p1;
@@ -60,7 +61,7 @@ describe('User sprint 2', () => {
     p2.addPoint();
     p2.addPoint();
     p2.addPoint();
-    expect(p1.isDeuceRuleActivated(p2)).toBe(true);
+    expect(Game.startDeuceRule(p1, p2)).toBe(true);
   });
   it('should activate ADVANTAGE rule if one of players take a pts', () => {
     p1.addPoint();
@@ -69,8 +70,8 @@ describe('User sprint 2', () => {
     p2.addPoint();
     p2.addPoint();
     p2.addPoint();
-    p1.isDeuceRuleActivated(p2);
+    Game.startDeuceRule(p1, p2);
     p1.addPoint();
-    expect(p1.isOnAdvantage).toBe(true);
+    expect(p1.score).toBe('ADV');
   });
 });

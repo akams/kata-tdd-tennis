@@ -102,6 +102,16 @@ class Game {
       return `${nameP2}, Win the game`;
     }
   }
+
+  static startDeuceRule(playerOne, playerTwo) {
+    let flag = false;
+    if (playerOne.score === 40 && playerTwo.score === 40) {
+      playerOne.setDeuceRule(true);
+      playerTwo.setDeuceRule(true);
+      flag = true;
+    }
+    return flag;
+  }
 }
 
 module.exports = Game; 
