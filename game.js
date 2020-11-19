@@ -1,4 +1,5 @@
 const User = require('./user'); 
+const getRandomInt = require('./utils'); 
 class Game {
   #p1;
   #p2;
@@ -16,16 +17,19 @@ class Game {
   start() {
     console.log('Start the game');
 
-    this.handlePlayerOne();
-    this.handlePlayerOne();
-    this.handlePlayerTwo();
-    this.handlePlayerOne();
-    this.handlePlayerTwo();
-    this.handlePlayerTwo();
-    this.handlePlayerTwo();
-    const s = this.displaySentenceWinner();
-
-    console.log(s);
+    while(this.getWinner() === false) {
+      const u1 = getRandomInt(10);
+      const u2 = getRandomInt(10);
+      if (u1 > u2) {
+        this.handlePlayerOne();
+      } else if (u1 < u2) {
+        this.handlePlayerTwo();
+      }
+      const s = this.displaySentenceWinner();
+      if (s) {
+        console.log(s);
+      }
+    } 
   }
 
   handlePlayerOne(){
@@ -77,6 +81,16 @@ class Game {
     if (this.#p2.isWinner) {
       this.#p1.setScore(0);
     }
+  }
+
+  getWinner() {
+    let flag = false;
+    if (this.#p1.isWinner) {
+      flag = true;
+    } else if (this.#p2.isWinner) {
+      flag = true;
+    }
+    return flag;
   }
 
   displaySentenceWinner() {
